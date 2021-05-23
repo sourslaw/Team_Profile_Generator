@@ -2,42 +2,34 @@ const Employee = require('../lib/employee.js');
 
 describe('employee', () => {
 	describe('getName', () => {
-		it("should get the dude's name", () => {
-			
-			const tom = new Employee('tom', '09', 'fart@me.com');
-			// tom.getName()
+		it("should get the employee's name", () => {
+			const input = new Employee('tom', '09', 'fart@me.com');
 
-			expect('tom').toEqual(tom.getName());
+			expect('tom').toEqual(input.getName());
 		});
 	})
 
 	describe('getId', () => {
-		it("should get the dude's id", () => {
-			
-			const tom = new Employee('tom', '09', 'fart@me.com');
-			// tom.getName()
+		it("should get the employee's id", () => {
+			const input = new Employee('tom', '09', 'fart@me.com');
 
-			expect('09').toEqual(tom.getId());
+			expect('09').toEqual(input.getId());
 		});
 	})
 
 	describe('getEmail', () => {
-		it("should get the dude's name", () => {
-			
-			const tom = new Employee('tom', '09', 'fart@me.com');
-			// tom.getName()
+		it("should get the employee's name", () => {
+			const input = new Employee('tom', '09', 'fart@me.com');
 
-			expect('fart@me.com').toEqual(tom.getEmail());
+			expect('fart@me.com').toEqual(input.getEmail());
 		});
 	})
 
 	describe('getRole', () => {
-		it("should get the dude's name", () => {
-			
-			const tom = new Employee('tom', '09', 'fart@me.com');
-			// tom.getName()
+		it("should get the employee's name", () => {	
+			const input = new Employee('tom', '09', 'fart@me.com');
 
-			expect('employee').toEqual(tom.getRole());
+			expect('employee').toEqual(input.getRole());
 		});
 	})
 
