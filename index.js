@@ -8,23 +8,22 @@ const Intern = require('./lib/intern.js');
 
 
 // creates structure for README based on user input
-// const generate = (box) =>
+// const generate = (team) =>
 
 // ;
 
 // array stores the user's inputs
-const box = [
+const team = [
 ];
 
-
 // function gets the user's github handle
-function gitHubText(box) {
-	const data = box[0].github.split('/');
+function gitHubText(team) {
+	const data = team[0].github.split('/');
 	const bit = data.slice(-1);
 	return bit;
 };
 
-// function utilizes inquirer to get user inputs and pushes to box array
+// function utilizes inquirer to get user inputs and pushes to team array
 function runInq() {
 	inquirer
     .prompt([
@@ -52,9 +51,7 @@ function runInq() {
     .then((inputs) => {
 
 		const manager = new Manager( inputs.managerName, inputs.id, inputs.email, inputs.officeNumber )
-		console.log(manager)
-		box.push(manager)
-		console.log(box)
+		team.push(manager)
 
 		whatDo()
 		
@@ -88,9 +85,7 @@ function runInq2() {
     .then((inputs) => {
 
 		const engineer = new Engineer( inputs.engineerName, inputs.id, inputs.email, inputs.github )
-		console.log(engineer)
-		box.push(engineer)
-		console.log(box)
+		team.push(engineer)
 		
 		whatDo()
 		
@@ -124,9 +119,7 @@ function runInq3() {
     .then((inputs) => {
 
 		const intern = new Intern( inputs.internName, inputs.id, inputs.email, inputs.github )
-		console.log(intern)
-		box.push(intern)
-		console.log(box)
+		team.push(intern)
 		
 		whatDo()
 		
@@ -159,17 +152,16 @@ function whatDo() {
 
 		if (inputs.action == 'exit') {
 			console.log('bye byee byye')
-			console.log(box)
+			console.log(team)
 		} 		
-
 
 	});
 };
 
 
 // function writes the generate() structure to a README file
-// function writer(box) {
-// 	const readmePage = generate(box);
+// function writer(team) {
+// 	const readmePage = generate(team);
 // 	fs.writeFile('generatedREADME.md', readmePage, (err) =>
 // 		err ? console.log(err) : console.log('Success!')
 // 	);
