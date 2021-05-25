@@ -23,6 +23,12 @@
 ### Usage
 ![alt text](assets/images/screenshot_usage.gif)
 
+- The application is invoked via the following command:  
+	-	```bash
+		node index.js
+		```
+- The interface will prompt the user with questions pertaining to the composition of their team, then output an HTML file titled, *generatedTEAM*
+
 ### Credits
 - [Inquirer.js](https://www.npmjs.com/package/inquirer)
 
