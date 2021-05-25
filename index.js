@@ -7,18 +7,11 @@ const Engineer = require('./lib/engineer.js');
 const Intern = require('./lib/intern.js');
 
 // array stores the user's inputs
-const team = [
-];
+// const team = [
+// ];
 
 const teamHtml = [
 ];
-
-// function gets the user's github handle
-function gitHubText(team) {
-	const data = team[0].github.split('/');
-	const bit = data.slice(-1);
-	return bit;
-};
 
 
 // function utilizes inquirer to get user inputs and pushes to team array
@@ -49,21 +42,22 @@ function runInq() {
     .then((inputs) => {
 
 		const manager = new Manager( inputs.name, inputs.id, inputs.email, inputs.officeNumber )
-		team.push(manager)
+		// team.push(manager)
 
 		teamHtml.push(
-			`
-			<div class="card mb-5" style="width: 20rem;">
-			<img src="/assets/pawel-czerwinski-aDIDvOG021w-unsplash.jpg" class="card-img-top rounded-circle circle-image" alt="...">
+		`
+		<div class="card mb-5" style="width: 20rem;">
+				<img src="./assets/pawel-czerwinski-aDIDvOG021w-unsplash.jpg" class="card-img-top rounded-circle circle-image" alt="...">
+				<span id="circleMan"></span>
 				<div class="card-body">
 					<h5 class="card-title">${inputs.name}</h5>
 					<h6 class="card-subtitle mb-2 text-muted">manager</h6>
-					<p>identification No.  ${inputs.id}</p>
-					<p>employee phone No.  ${inputs.officeNumber}</p>
+					<p>identification No.  |  ${inputs.id}</p>
+					<p>phone No.  |  ${inputs.officeNumber}</p>
 					<a href="to:${inputs.email}" class="card-link">${inputs.email}</a>
 				</div>
 			</div>
-			`
+		`
 		);
 
 		whatDo()
@@ -98,17 +92,18 @@ function runInq2() {
     .then((inputs) => {
 
 		const engineer = new Engineer( inputs.name, inputs.id, inputs.email, inputs.github )
-		team.push(engineer)
+		// team.push(engineer)
 
 		teamHtml.push(
-			`
-			<div class="card mb-5" style="width: 20rem;">
-			<img src="/assets/pawel-czerwinski-aDIDvOG021w-unsplash.jpg" class="card-img-top rounded-circle circle-image" alt="...">
+		`
+		<div class="card mb-5" style="width: 20rem;">
+				<img src="./assets/pawel-czerwinski-aDIDvOG021w-unsplash.jpg" class="card-img-top rounded-circle circle-image" alt="...">
+				<span id="circleEng"></span>
 				<div class="card-body">
 					<h5 class="card-title">${inputs.name}</h5>
 					<h6 class="card-subtitle mb-2 text-muted">engineer</h6>
-					<p>identification No.  ${inputs.id}</p>
-					<a href="${inputs.github}" class="card-link">${inputs.github}</a>
+					<p>identification No.  |  ${inputs.id}</p>
+					<p>github  |  <a href="${inputs.github}" class="card-link">${inputs.github}</a></p>
 					<a href="mailto:${inputs.email}" class="card-link">${inputs.email}</a>
 				</div>
 			</div>
@@ -140,24 +135,25 @@ function runInq3() {
         },
         {
             type: 'input',
-            name: 'github',
+            name: 'school',
             message: "enter the intern's school: ",
         }
 	])
     .then((inputs) => {
 
-		const intern = new Intern( inputs.name, inputs.id, inputs.email, inputs.github )
-		team.push(intern)
+		const intern = new Intern( inputs.name, inputs.id, inputs.email, inputs.school )
+		// team.push(intern)
 
 		teamHtml.push(
-			`
-			<div class="card mb-5" style="width: 20rem;">
-			<img src="/assets/pawel-czerwinski-aDIDvOG021w-unsplash.jpg" class="card-img-top rounded-circle circle-image" alt="...">
+		`	
+		<div class="card mb-5" style="width: 20rem;">
+				<img src="./assets/pawel-czerwinski-aDIDvOG021w-unsplash.jpg" class="card-img-top rounded-circle circle-image" alt="...">
+				<span id="circleInt"></span>
 				<div class="card-body">
 					<h5 class="card-title">${inputs.name}</h5>
 					<h6 class="card-subtitle mb-2 text-muted">intern</h6>
-					<p>identification No.  ${inputs.id}</p>
-					<p>intern school  ${inputs.school}</p>
+					<p>identification No.  |  ${inputs.id}</p>
+					<p>school  |  ${inputs.school}</p>
 					<a href="mailto:${inputs.email}" class="card-link">${inputs.email}</a>
 				</div>
 			</div>
@@ -190,33 +186,25 @@ function whatDo() {
 		if (inputs.action == 'intern') {
 			console.log('adding i n t e r n')
 			runInq3();
-
 		} 
 
 		if (inputs.action == 'exit') {
-			console.log('bye byee byye')
-
-			console.log('TEAM' + team)
+			console.log('your team is created, bye bye')
 
 			teamHtml.push(
-				`
-						</div>
-						<div class="row justify-content-center mt-5" id="footer">
-							<div class="col-sm-12 col-lg-8">
-								<h1 class="text-center">footer</h1>
-							</div>
+			`</div>
+					<div class="row justify-content-center mt-5" id="footer">
+						<div class="col-sm-12 col-lg-8">
+							<h1 class="text-center" id="footerText">&copy;2021 Our Co.</h1>
 						</div>
 					</div>
-				</body>
-				</html>
-				`
+				</div>
+			</body>
+			</html>
+			`
 			);
-
-			console.log('TEAM HTML' + teamHtml)
-			// writer();
 			
-			console.log(typeof(teamHtml))
-
+			// fs.writerFile() writes the html file
 			fs.writeFile('generatedTEAM.html', teamHtml.join(""), (err) =>
 				err ? console.log(err) : console.log('Success!')
 			);
@@ -226,45 +214,34 @@ function whatDo() {
 	});
 };
 
-
-// function writes the generate() structure to a README file
-function writer(teamHtml) {
-	// const teamPage = generate(team);
-	// const teamPage = teamHtml;
-
-	fs.writeFile('generatedTEAM.html', teamHtml, (err) =>
-		err ? console.log(err) : console.log('Success!')
-	);
-};
-
-
 // intializes the script
 runInq();
 teamMaker();
 
-// test_TEMP funct for cards
 
+// beginning block of html template
 function teamMaker() {
 	teamHtml.push(
-		`
-			<!DOCTYPE html>
-		<html lang="en">
-		<head>
-			<meta charset="UTF-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-				integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-			<link rel="stylesheet" href="/dist/style.css" />
-			<title>Team Profile</title>
-		</head>
-		<body>
-			<div class="container">
-				<div class="row justify-content-center mt-5 mb-5" id="box1">
-					<div class="col-sm-12 col-lg-8">
-						<h1 class="text-center">team p r o f i l e</h1>
-					</div>
+	`
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+			integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="./dist/style.css" />
+		<title>Team Profile</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row justify-content-center mt-5 mb-5" id="box1">
+				<div class="col-sm-12 col-lg-8">
+					<h1 class="text-center" id="banner">Our Co. Team</h1>
 				</div>
-				<div class="row justify-content-evenly pb-5" id=profilesEl>
-		`
+			</div>
+			<div class="row justify-content-evenly pb-5" id=profilesEl>
+	`
 	)
 };

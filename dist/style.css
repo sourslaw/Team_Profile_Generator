@@ -1,34 +1,66 @@
+body {
+	background-color: #e8d6cb;
+}
+
 .container {
 	position: relative;
 	min-height: 100vh;
+	font-family: 'Montserrat Alternates', sans-serif;
+}
+
+h5 {
+	margin-top: -1rem;
 }
 
 p {
 	margin-bottom: .25rem;
 }
 
-#box1 {
-	background-color: rgb(127, 242, 255);
+a {
+	text-decoration: none;
 }
 
-#profilesEl {
-	/* background-color: azure; */
+#banner {
+	font-size: 4rem;
+	font-weight: bold;
 }
-
-#footer {
-	background-color: cadetblue;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-}
-
 
 /* card styling */
 .card {
+	background-color: #e8d6cb;
 	border: none;
 }
 
+#circleMan {
+	z-index: 1;
+	position: absolute;
+	top: -1rem;
+	width: 16rem;
+	height: 16rem;
+	background: #c8553d;
+	border-radius: 50%
+}
+#circleEng {
+	z-index: 1;
+	position: absolute;
+	top: -1rem;
+	width: 16rem;
+	height: 16rem;
+	background: #274c77;
+	border-radius: 50%
+}
+#circleInt {
+	z-index: 1;
+	position: absolute;
+	top: -1rem;
+	width: 16rem;
+	height: 16rem;
+	background: #5f7470;
+	border-radius: 50%
+}
+
 .circle-image{
+	z-index: 2;
 	width: 15rem;
 	height: 15rem;
 	text-align: center;
@@ -36,8 +68,16 @@ p {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: .5rem;
+	object-fit: cover;
 }
 
-h5 {
-	margin-top: -1rem;
+
+#footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+#footerText {
+	font-size: 1rem;
 }
