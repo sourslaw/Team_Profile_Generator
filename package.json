@@ -4,7 +4,7 @@
   "description": "![alt text](assets/images/screenshot.png)",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --verbose"
   },
   "repository": {
     "type": "git",
