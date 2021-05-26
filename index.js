@@ -9,10 +9,8 @@ const Intern = require('./lib/intern.js');
 // array stores the user's inputs
 // const team = [
 // ];
-
 const teamHtml = [
 ];
-
 
 // function utilizes inquirer to get user inputs and pushes to team array
 function runInq() {
@@ -22,6 +20,11 @@ function runInq() {
             type: 'input',
             name: 'name',
             message: "enter the unit manager's name: ",
+		},
+		{
+            type: 'input',
+            name: 'photo',
+            message: "please link to the manager's photo: ",
         },
         {
             type: 'input',
@@ -41,23 +44,24 @@ function runInq() {
 	])
     .then((inputs) => {
 
-		const manager = new Manager( inputs.name, inputs.id, inputs.email, inputs.officeNumber )
+		const manager = new Manager( inputs.name, inputs.photo, inputs.id, inputs.email, inputs.officeNumber )
 		// team.push(manager)
 
 		teamHtml.push(
-		`
-		<div class="card mb-5" style="width: 20rem;">
-				<img src="./assets/pawel-czerwinski-aDIDvOG021w-unsplash.jpg" class="card-img-top rounded-circle circle-image" alt="...">
+			`
+			<div class="card mb-5" style="width: 20rem;">
+				<img src="${inputs.photo}" class="card-img-top rounded-circle circle-image"
+					alt="...">
 				<span id="circleMan"></span>
 				<div class="card-body">
 					<h5 class="card-title">${inputs.name}</h5>
 					<h6 class="card-subtitle mb-2 text-muted">manager</h6>
-					<p>identification No.  |  ${inputs.id}</p>
-					<p>phone No.  |  ${inputs.officeNumber}</p>
-					<a href="to:${inputs.email}" class="card-link">${inputs.email}</a>
+					<p>identification No. | ${inputs.id}</p>
+					<p>phone No. | ${inputs.officeNumber}</p>
+					<a href="mailto:${inputs.email}" class="card-link">${inputs.email}</a>
 				</div>
 			</div>
-		`
+			`
 		);
 
 		whatDo()
@@ -72,6 +76,11 @@ function runInq2() {
             type: 'input',
             name: 'name',
             message: "enter the engineer's name: ",
+		},
+		{
+            type: 'input',
+            name: 'photo',
+            message: "please link to the engineer's photo: ",
         },
         {
             type: 'input',
@@ -86,24 +95,24 @@ function runInq2() {
         {
             type: 'input',
             name: 'github',
-            message: "enter the engineer's github: ",
-        }
+            message: "enter the engineer's github handle: ",
+		}
 	])
     .then((inputs) => {
 
-		const engineer = new Engineer( inputs.name, inputs.id, inputs.email, inputs.github )
+		const engineer = new Engineer( inputs.name, inputs.photo, inputs.id, inputs.email, inputs.github)
 		// team.push(engineer)
 
 		teamHtml.push(
 		`
 		<div class="card mb-5" style="width: 20rem;">
-				<img src="./assets/pawel-czerwinski-aDIDvOG021w-unsplash.jpg" class="card-img-top rounded-circle circle-image" alt="...">
+				<img src="${inputs.photo}" class="card-img-top rounded-circle circle-image" alt="...">
 				<span id="circleEng"></span>
 				<div class="card-body">
 					<h5 class="card-title">${inputs.name}</h5>
 					<h6 class="card-subtitle mb-2 text-muted">engineer</h6>
 					<p>identification No.  |  ${inputs.id}</p>
-					<p>github  |  <a href="${inputs.github}" class="card-link">${inputs.github}</a></p>
+					<p>github  |  <a href="https://github.com/${inputs.github}" class="card-link">${inputs.github}</a></p>
 					<a href="mailto:${inputs.email}" class="card-link">${inputs.email}</a>
 				</div>
 			</div>
@@ -123,6 +132,11 @@ function runInq3() {
             name: 'name',
             message: "enter the intern's name: ",
         },
+		{
+            type: 'input',
+            name: 'photo',
+            message: "please link to the intern's photo: ",
+        },
         {
             type: 'input',
             name: 'id',
@@ -141,13 +155,13 @@ function runInq3() {
 	])
     .then((inputs) => {
 
-		const intern = new Intern( inputs.name, inputs.id, inputs.email, inputs.school )
+		const intern = new Intern( inputs.name, inputs.photo, inputs.id, inputs.email, inputs.school )
 		// team.push(intern)
 
 		teamHtml.push(
 		`	
 		<div class="card mb-5" style="width: 20rem;">
-				<img src="./assets/pawel-czerwinski-aDIDvOG021w-unsplash.jpg" class="card-img-top rounded-circle circle-image" alt="...">
+				<img src="${inputs.photo}" class="card-img-top rounded-circle circle-image" alt="...">
 				<span id="circleInt"></span>
 				<div class="card-body">
 					<h5 class="card-title">${inputs.name}</h5>
@@ -181,13 +195,11 @@ function whatDo() {
 		if (inputs.action == 'engineer') {
 			console.log('adding e n g i n e e r')
 			runInq2(); 
-		} 
-		
+		} 		
 		if (inputs.action == 'intern') {
 			console.log('adding i n t e r n')
 			runInq3();
 		} 
-
 		if (inputs.action == 'exit') {
 			console.log('your team is created, bye bye')
 
@@ -204,11 +216,10 @@ function whatDo() {
 			`
 			);
 			
-			// fs.writerFile() writes the html file
+			// fs.writeFile() creates the html based on teamHtml array
 			fs.writeFile('generatedTEAM.html', teamHtml.join(""), (err) =>
 				err ? console.log(err) : console.log('Success!')
 			);
-
 		};
 
 	});
@@ -222,26 +233,26 @@ teamMaker();
 // beginning block of html template
 function teamMaker() {
 	teamHtml.push(
-	`
-	<!DOCTYPE html>
-	<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-			integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="./dist/style.css" />
-		<title>Team Profile</title>
-	</head>
-	<body>
-		<div class="container">
-			<div class="row justify-content-center mt-5 mb-5" id="box1">
-				<div class="col-sm-12 col-lg-8">
-					<h1 class="text-center" id="banner">Our Co. Team</h1>
+		`
+		<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+				integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+			<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
+			<link rel="stylesheet" href="./dist/style.css" />
+			<title>Team Profile</title>
+		</head>
+		<body>
+			<div class="container">
+				<div class="row justify-content-center mt-5 mb-5" id="box1">
+					<div class="col-sm-12 col-lg-8">
+						<h1 class="text-center" id="banner">Our Co. Team</h1>
+					</div>
 				</div>
-			</div>
-			<div class="row justify-content-evenly pb-5" id=profilesEl>
-	`
-	)
+				<div class="row justify-content-evenly pb-5" id=profilesEl>
+		`
+	);
 };
