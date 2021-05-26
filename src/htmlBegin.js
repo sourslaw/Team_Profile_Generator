@@ -1,20 +1,3 @@
-// const manBit = 
-// 	`
-// 	<div class="card mb-5" style="width: 20rem;">
-// 		<img src="./assets/pawel-czerwinski-aDIDvOG021w-unsplash.jpg" class="card-img-top rounded-circle circle-image"
-// 			alt="...">
-// 		<span id="circleMan"></span>
-// 		<div class="card-body">
-// 			<h5 class="card-title">${inputs.name}</h5>
-// 			<h6 class="card-subtitle mb-2 text-muted">manager</h6>
-// 			<p>identification No. | ${inputs.id}</p>
-// 			<p>phone No. | ${inputs.officeNumber}</p>
-// 			<a href="mailto:${inputs.email}" class="card-link">${inputs.email}</a>
-// 		</div>
-// 	</div>
-// 	`
-// ;
-
 const front =
 `
 <!DOCTYPE html>
@@ -25,7 +8,7 @@ const front =
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="./dist/style.css" />
+	<link rel="stylesheet" href="./style.css" />
 	<title>Team Profile</title>
 </head>
 <body>
@@ -39,4 +22,4 @@ const front =
 `;
 
 
-modules.export = front;
+module.exports = front;

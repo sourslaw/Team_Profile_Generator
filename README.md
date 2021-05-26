@@ -29,6 +29,14 @@
 		```
 - The interface will prompt the user with questions pertaining to the composition of their team, then output an HTML file titled, *generatedTEAM*
 
+### Tests
+![alt text](assets/images/screenshot_test.gif)
+
+- The application tests can be invoked via the following command:  
+	-	```bash
+		npm test
+		```
+
 ### Credits
 - [Inquirer.js](https://www.npmjs.com/package/inquirer)
 

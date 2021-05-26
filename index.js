@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+
 const fs = require('fs');
 
 const Employee = require('./lib/employee.js');
@@ -6,11 +7,15 @@ const Manager = require('./lib/manager.js');
 const Engineer = require('./lib/engineer.js');
 const Intern = require('./lib/intern.js');
 
+const front = require('./src/htmlBegin.js');
+const butt = require('./src/htmlEnd.js');
+
 // array stores the user's inputs
 // const team = [
 // ];
 const teamHtml = [
 ];
+
 
 // function utilizes inquirer to get user inputs and pushes to team array
 function runInq() {
@@ -34,7 +39,17 @@ function runInq() {
         {
             type: 'input',
             name: 'email',
-            message: "enter the unit manager's email address: ",
+			message: "enter the unit manager's email address: ",
+			validate: function(email) {
+				valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+  
+				if (valid) {
+					return true;
+				} else {
+					console.log(". . . enter a valid email")
+					return false;
+				}; //https://gist.github.com/Amitabh-K/ae073eea3d5207efaddffde19b1618e8
+			}
         },
         {
             type: 'input',
@@ -63,8 +78,8 @@ function runInq() {
 			</div>
 			`
 		);
-
-		whatDo()
+	
+		whatDo();
 		
 	});
 };
@@ -90,7 +105,18 @@ function runInq2() {
         {
             type: 'input',
             name: 'email',
-            message: "enter the engineer's email address: ",
+			message: "enter the engineer's email address: ",
+			validate: function(email) {
+				valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+  
+				if (valid) {
+					return true;
+				} else {
+					console.log(". . . enter a valid email")
+					email.clear()
+					return false;
+				};
+			}
         },
         {
             type: 'input',
@@ -119,7 +145,7 @@ function runInq2() {
 			`
 		);
 		
-		whatDo()
+		whatDo();
 		
 	});
 };
@@ -145,7 +171,17 @@ function runInq3() {
         {
             type: 'input',
             name: 'email',
-            message: "enter the intern's email address: ",
+			message: "enter the intern's email address: ",
+			validate: function(email) {
+				valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+  
+				if (valid) {
+					return true;
+				} else {
+					console.log(". . . enter a valid email")
+					return false;
+				};
+			}
         },
         {
             type: 'input',
@@ -174,7 +210,7 @@ function runInq3() {
 			`
 		);
 		
-		whatDo()
+		whatDo();
 		
 	});
 };
@@ -203,21 +239,10 @@ function whatDo() {
 		if (inputs.action == 'exit') {
 			console.log('your team is created, bye bye')
 
-			teamHtml.push(
-			`</div>
-					<div class="row justify-content-center mt-5" id="footer">
-						<div class="col-sm-12 col-lg-8">
-							<h1 class="text-center" id="footerText">&copy;2021 Our Co.</h1>
-						</div>
-					</div>
-				</div>
-			</body>
-			</html>
-			`
-			);
+			teamHtml.push(butt);
 			
 			// fs.writeFile() creates the html based on teamHtml array
-			fs.writeFile('generatedTEAM.html', teamHtml.join(""), (err) =>
+			fs.writeFile('./dist/generatedTEAM.html', teamHtml.join(""), (err) =>
 				err ? console.log(err) : console.log('Success!')
 			);
 		};
@@ -232,27 +257,5 @@ teamMaker();
 
 // beginning block of html template
 function teamMaker() {
-	teamHtml.push(
-		`
-		<!DOCTYPE html>
-		<html lang="en">
-		<head>
-			<meta charset="UTF-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-				integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-			<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
-			<link rel="stylesheet" href="./dist/style.css" />
-			<title>Team Profile</title>
-		</head>
-		<body>
-			<div class="container">
-				<div class="row justify-content-center mt-5 mb-5" id="box1">
-					<div class="col-sm-12 col-lg-8">
-						<h1 class="text-center" id="banner">Our Co. Team</h1>
-					</div>
-				</div>
-				<div class="row justify-content-evenly pb-5" id=profilesEl>
-		`
-	);
+	teamHtml.push(front);
 };
