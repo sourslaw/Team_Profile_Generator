@@ -1,4 +1,4 @@
-# README Generator
+# Team Profile Generator
 ![alt text](assets/images/screenshot.png)
 
 ## Description
