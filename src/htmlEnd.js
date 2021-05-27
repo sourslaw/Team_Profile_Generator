@@ -8,8 +8,7 @@ const butt =
 </div>
 </body>
 </html>
-`
-;
+`;
 
 
 module.exports = butt;

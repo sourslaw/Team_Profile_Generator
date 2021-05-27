@@ -28,6 +28,7 @@
 		node index.js
 		```
 - The interface will prompt the user with questions pertaining to the composition of their team, then output an HTML file titled, *generatedTEAM* into the 'dist' directory
+	- The HTML file is linked to an existing CSS file with appropriate brand styling
 
 ### Tests
 ![alt text](assets/images/screenshot_test.gif)
@@ -39,6 +40,7 @@
 		```
 
 ### Credits
+- [Bootstrap](https://getbootstrap.com/)
 - [Inquirer.js](https://www.npmjs.com/package/inquirer)
 - [Jest](https://jestjs.io/)
 
