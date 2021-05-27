@@ -27,18 +27,20 @@
 	-	```bash
 		node index.js
 		```
-- The interface will prompt the user with questions pertaining to the composition of their team, then output an HTML file titled, *generatedTEAM*
+- The interface will prompt the user with questions pertaining to the composition of their team, then output an HTML file titled, *generatedTEAM* into the 'dist' directory
 
 ### Tests
 ![alt text](assets/images/screenshot_test.gif)
 
-- The application tests can be invoked via the following command:  
+- The application uses Jest as the testing framework
+- The tests can be invoked via the following command:  
 	-	```bash
 		npm test
 		```
 
 ### Credits
 - [Inquirer.js](https://www.npmjs.com/package/inquirer)
+- [Jest](https://jestjs.io/)
 
 ### License
 - Licensed under the [MIT](https://opensource.org/licenses/mit-license.php) license.
